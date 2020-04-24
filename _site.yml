@@ -1,5 +1,6 @@
 
 name: "буйхалъи ххабарде"
+output_dir: "."
 navbar:
   title: "буйхалъи ххабарде"
   left:
