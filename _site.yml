@@ -1,0 +1,11 @@
+
+name: "буйхалъи ххабарде"
+navbar:
+  title: "буйхалъи ххабарде"
+  left:
+    - text: "Домашняя страница"
+      href: index.html
+    - text: "Рассказы"
+      menu:
+        - text: "Регьинлъи талих1 (Семейное счастье)"
+          href: text1.html
