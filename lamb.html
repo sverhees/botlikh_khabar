@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>lamb.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">буйхалъи ххабарде</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Домашняя страница</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Рассказы
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="text1.html">Регьинлъи талих1 (Семейное счастье)</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><br></p>
+<div id="денла-диб-кьет1ирла-я-и-мой-ягненок" class="section level1 tabset">
+<h1>Денла диб кьет1ирла (Я и мой ягненок)</h1>
+<div style="max-width:650px;text-align:center">
+<p>Эта история была записана Т.Е. Гудавой (1922–1976) во время полевой работы (в 50-х–60-х годах), вероятно у Х.Г. Азаева (1939–2005). Гудава записал истории на ботлихском языке грузинской орфографией, и в большинстве слуаев не записал перевод. За последние годы С. Ферхеес набрала тексты на кириллице, и частично их разобрала с помощью К. Наккарато и разных носителей ботлихского языка. Работа пока далеко не завершена, и осталось много вопросов и неточностей. Мы стараемся постоянно дополнять и улучшать.</p>
+</div>
+<p><br></p>
+<div id="ботлихский" class="section level2">
+<h2>ботлихский</h2>
+<div style="max-width:650px">
+<p>Ден ванъа вук1а бугъуйхоб каласалъи. Бугъуйхоб каласла бул1о, ден вук1а ишхъе игьи нала гуч1ида. Цер зиуди ила йанъа йик1а базара. Базареку бай йессуха йишаб заманади галълъиди кьет1ир гьибгъва санду. Гьеч1иссе дий кьет1ир гьушта идо бук1ич1а. Илуди гьуб кьет1ир гьибгъва бук1а дий чанчи. Гьуб кьет1ирла ибча, ден мигъилъа ванъихо вук1а. Ишкур гьуб кьет1ир гванзо чанчихаб бук1а. Гьуб кьет1ир дич1у бехут1у ругьунив. Гьулъий ишкур туканеру кампитабалъи хихаб бук1а. <br></p>
+<p>Гьулълъа бехут1у гьула чанчихаб бук1аллъару бесхъа гьуб денлъи мусе хисараб гъунду багьихаб бук1ич1а. Ден орсса ванъала – орсса гъихаб бук1а, гьина гъвала – гьина гъихаб бук1а. Руша эти вуккала, гьикьи кастум бети буккихаб бук1а, гьулълъий гьек1убла дибла кастум бат1а бухи бегъихаб бук1а. Гьек1уб кастум гьикьи бета руша этала, бехут1у хъада багьихаб бук1а. Гьуб кьет1ирла ибча, инаг1ала ванъи вуккихо вук1а, ден гуч1ада ишхъе бигъихаб бук1ич1а. Цеб зиуди денла кьет1ирла мигъила наъа рук1а. Зиуди ссардала рагьу, ссаквала вук1а, ден рушикьи варахху. Гьуб мусе гъунду вукку ида дийдала бегъич1ада. Кьет1ир бехъут1у ссарду инква бук1а. <br></p>
+<p>Цеб заманади макьеццуб ангьата ида дий кьет1иралъи хъили гьарч1ч1абалъи. Цеб анщи вила дени. Хъидилъа ригьуй ххунххулач1у ссеъа бац1а беркьа ида, бехъут1у ссарду хъилида кьет1ирла ида. Гьула хвасар игьу дени беркуч1уку кьет1иради. Гоб бук1а хеъ маъихаб берка. Гьена гьеч1и бесхъекула дий кьет1ир кутакалда идо. Гьулълъару бесхъа чанчихаб бук1а ишкур гьуб караотич1у бекьару. Це-цеб микъе бекьарала бул1у, караотич1у гьеъа барахху мисихаб бук1а. Къену бул1ата бук1а, ваъалъи ванъи риу мугъата бук1а. Гьулълъийлълъи бат1алъи дий къоро бук1ич1а. Илуй къоро бук1а гьуб бела бит1ай. Ищи гьелълъич1уру гьеъа целуйцел ххиралъута рук1а. <br></p>
+<p>Цер зиуди ден туканна хъучибалъихи вел1а вук1а. Туканна кьет1ирмахи чи-талу рак1варала мугъу ишала т1аму бета. Бит1ив ден къват1а вац1аб заманади, бехут1у чунгьа гьибгъва. Туканнала вац1а, ишхъа гъилъа ригьуй, инукулахи гьуб орсса гьибгъва-талу хъиду дени. Устурала эту, гьингурла махъо, гьингурахику орсса гьибгъва миса. Ила йинса ххунххулла бигъо, гьингур махъо-талу гьур зиуди илуди гьуб бела бит1ата бук1а. Ишкур бит1ай бештич1а. Ила дихъи сурабу йехъвата йагьу, ч1арг1алъата минла дуб кьет1ирла-талу. Бешеналълъула гьину – гьину берахху мисихаб бук1елълъи, гьингурла махъелълъи, илуди къот1и игьу гьуб бела бит1ай-талу. <br></p>
+<p>Цеб зиуди илуди дени гьедибалъич1у вехут1у вит1о, кьет1ир санду чи бештич1а еб игьула. Ишхъа гьедибалъила ибча ден гъилъа ригьуй, кьет1ир дий бехъут1у миса, илулъила дибла боч1уха питна бул1у. Орссала ванъа, ден к1еда зиуди ишхъа гъич1а, гъунду вагьи щайт1ана ванъихо вук1а. Илуди ден вакъайгъалу базареку цебла кьет1ир ибху, амма гьуб кьет1ир дий расдала идихаб бук1ич1а. Гьуб кьет1ирач1у дени векьарада къиндихо вук1ич1а. Дибда кьет1иралъи рикьи хеъала хич1а. <br></p>
+<div style="text-align:center">
+<strong>Гьула бул1у дибла зук1к1у кьет1иралъила гьудуллъи.</strong>
+</div>
+</div>
+<p><br></p>
+</div>
+<div id="русский" class="section level2">
+<h2>русский</h2>
+<div style="max-width:650px">
+<p>Я учился в четвертом классе. Когда я окончил четвертый класс, я был дома и мне делать было нечего. Один день мать пошла на базар. Возвратилась она с базара вместе с ягнёнком. Сначала он мне не понравился. Мать купила ягнёнка, чтобы я ухаживал за ним. С этим ягнёнком я ходил в сад. Я укаживал за ним хорошо. Он привык ко мне. Угощал я его конфетам из магазина. <br></p>
+<p>Потом я кормил его, поэтому он не оставался без меня, всегда ходил со мной. Когда я выходил, он шел за мной, а когда я остался внутри, он остался со мной. Когда приходилось залезть на дерево, я оставлял свой костюм внизу, и он мог отличить мой и чужой костюм. Если оставлять чужой костюм, он [догонял] меня. С этим ягнёнком я ходил везде, и без меня ни с кем он не оставался. В один день, мы ходили в сад. Целый день прогулялись и уставшийся я лёг под деревом. Я уснул на этом месте. Ягнёнок находился возле меня и ел. <br></p>
+<p>В одно время, я услышал крик моего ягнёнка. В одно мгновение я проснулся. Проснувшись и посмотрев перед лицом я вижу змею, а кругом бегает и кричит мой ягнёнок. Вот так меня спас от змеи ягнёнок. И эта змея была такая, которая ползает в рот. После этого мой ягнёнок мне больше понравился. После этого я кормил ягнёнка возле своей кровати. Иногда спал возле меня, иногда находился под кроватью. Заканчивалось лето и приближалось начало учебного года. Мне не захотелось разлучиться с ягнёнком. Маме хотелось отправить его на пастбище. Мы с каждым днем привыкли друг к другу и не хотелись расставаться. <br></p>
+<p>В один день я собирался в магазин купить учебники. Подумав, как пойти в магазин с ягнёнком, решил оставить его закрыв в комнате. Как вышел на улицу, ягнёнок гоняется за мной. Как пришел с магазина, интересовался как он смог вылезть. Поднялся на стол, разбил стекло и вышел с окна. Мамы […], что разбил окно, и целый день говорит что отправляет его на пастбище. Я был против. Мама поругала меня, мол, надоел ты со своим ягнёнком. Находился иногда на постели, разбил окно; мать решила его отправить на пастбище. В один день, мать отправила меня за телятами, и никак не разрешила мне взять с собой ягнёнка. Возвращаясь домой, моего ягнёнка […] резать, и у нас с мамой случился скандал. Я вышел из дома и не возвращался домой два дня, спал в саду местности “Щайт1ане”. Мама купила мне другого ягнёнка чтобы меня примирить, но я его никак не любил. […] Даже не провобовал мясо от своего ягнёнка. <br></p>
+<div style="text-align:center">
+<strong>Так завершился моя дружба с маленьким ягнёнком.</strong>
+</div>
+</div>
+<p><br></p>
+</div>
+<div id="ботлихский-и-русский" class="section level2">
+<h2>ботлихский и русский</h2>
+<table>
+<colgroup>
+<col width="1%" />
+<col width="52%" />
+<col width="46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="left">буйхалъи</th>
+<th align="left">русский</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Ден ванъа вук1а бугъуйхоб каласалъи.</td>
+<td align="left">Я учился в четвертом классе.</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Бугъуйхоб каласла бул1о, ден вук1а ишхъе игьи нала гуч1ида.</td>
+<td align="left">Когда я окончил четвертый класс, я был дома и мне делать было нечего.</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Цер зиуди ила йанъа йик1а базара.</td>
+<td align="left">Один день мать пошла на базар.</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Базареку бай йессуха йишаб заманади галълъиди кьет1ир гьибгъва санду.</td>
+<td align="left">Возвратилась она с базара вместе с ягнёнком.</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Гьеч1иссе дий кьет1ир гьушта идо бук1ич1а.</td>
+<td align="left">Сначала он мне не понравился.</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Илуди гьуб кьет1ир гьибгъва бук1а дий чанчи.</td>
+<td align="left">Мать купила ягнёнка, чтобы я ухаживал за ним.</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">Гьуб кьет1ирла ибча, ден мигъилъа ванъихо вук1а.</td>
+<td align="left">С этим ягнёнком я ходил в сад.</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">Ишкур гьуб кьет1ир гванзо чанчихаб бук1а.</td>
+<td align="left">Я укаживал за ним хорошо.</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">Гьуб кьет1ир дич1у бехут1у ругьунив.</td>
+<td align="left">Он привык ко мне.</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">Гьулъий ишкур туканеру кампитабалъи хихаб бук1а.</td>
+<td align="left">Угощал я его конфетам из магазина.</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">Гьулълъа бехут1у гьула чанчихаб бук1аллъару бесхъа гьуб денлъи мусе хисараб гъунду багьихаб бук1ич1а.</td>
+<td align="left">Потом я кормил его, поэтому он не оставался без меня, всегда ходил со мной.</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">Ден орсса ванъала – орсса гъихаб бук1а, гьина гъвала – гьина гъихаб бук1а.</td>
+<td align="left">Когда я выходил, он шел за мной, а когда я остался внутри, он остался со мной.</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="left">Руша эти вуккала, гьикьи кастум бети буккихаб бук1а, гьулълъий гьек1убла дибла кастум бат1а бухи бегъихаб бук1а.</td>
+<td align="left">Когда приходилось залезть на дерево, я оставлял свой костюм внизу, и он мог отличить мой и чужой костюм.</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="left">Гьек1уб кастум гьикьи бета руша этала, бехут1у хъада багьихаб бук1а.</td>
+<td align="left">Если оставлять чужой костюм, он [догонял] меня.</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">Гьуб кьет1ирла ибча, инаг1ала ванъи вуккихо вук1а, ден гуч1ада ишхъе бигъихаб бук1ич1а.</td>
+<td align="left">С этим ягнёнком я ходил везде, и без меня ни с кем он не оставался.</td>
+</tr>
+<tr class="even">
+<td align="right">16</td>
+<td align="left">Цеб зиуди денла кьет1ирла мигъила наъа рук1а.</td>
+<td align="left">В один день, мы ходили в сад.</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="left">Зиуди ссардала рагьу, ссаквала вук1а, ден рушикьи варахху.</td>
+<td align="left">Целый день прогулялись и уставшийся я лёг под деревом.</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="left">Гьуб мусе гъунду вукку ида дийдала бегъич1ада.</td>
+<td align="left">Я уснул на этом месте.</td>
+</tr>
+<tr class="odd">
+<td align="right">19</td>
+<td align="left">Кьет1ир бехъут1у ссарду инква бук1а.</td>
+<td align="left">Ягнёнок находился возле меня и ел.</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="left">Цеб заманади макьеццуб ангьата ида дий кьет1иралъи хъили гьарч1ч1абалъи.</td>
+<td align="left">В одно время, я услышал крик моего ягнёнка.</td>
+</tr>
+<tr class="odd">
+<td align="right">21</td>
+<td align="left">Цеб анщи вила дени.</td>
+<td align="left">В одно мгновение я проснулся.</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="left">Хъидилъа ригьуй ххунххулач1у ссеъа бац1а беркьа ида, бехъут1у ссарду хъилида кьет1ирла ида.</td>
+<td align="left">Проснувшись и посмотрев перед лицом я вижу змею, а кругом бегает и кричит мой ягнёнок.</td>
+</tr>
+<tr class="odd">
+<td align="right">23</td>
+<td align="left">Гьула хвасар игьу дени беркуч1уку кьет1иради.</td>
+<td align="left">Вот так меня спас от змеи ягнёнок.</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="left">Гоб бук1а хеъ маъихаб берка.</td>
+<td align="left">И эта змея была такая, которая ползает в рот.</td>
+</tr>
+<tr class="odd">
+<td align="right">25</td>
+<td align="left">Гьена гьеч1и бесхъекула дий кьет1ир кутакалда идо.</td>
+<td align="left">После этого мой ягнёнок мне больше понравился.</td>
+</tr>
+<tr class="even">
+<td align="right">26</td>
+<td align="left">Гьулълъару бесхъа чанчихаб бук1а ишкур гьуб караотич1у бекьару.</td>
+<td align="left">После этого я кормил ягнёнка возле своей кровати.</td>
+</tr>
+<tr class="odd">
+<td align="right">27</td>
+<td align="left">Це-цеб микъе бекьарала бул1у, караотич1у гьеъа барахху мисихаб бук1а.</td>
+<td align="left">Иногда спал возле меня, иногда находился под кроватью.</td>
+</tr>
+<tr class="even">
+<td align="right">28</td>
+<td align="left">Къену бул1ата бук1а, ваъалъи ванъи риу мугъата бук1а.</td>
+<td align="left">Заканчивалось лето и приближалось начало учебного года.</td>
+</tr>
+<tr class="odd">
+<td align="right">29</td>
+<td align="left">Гьулълъийлълъи бат1алъи дий къоро бук1ич1а.</td>
+<td align="left">Мне не захотелось разлучиться с ягнёнком.</td>
+</tr>
+<tr class="even">
+<td align="right">30</td>
+<td align="left">Илуй къоро бук1а гьуб бела бит1ай.</td>
+<td align="left">Маме хотелось отправить его на пастбище.</td>
+</tr>
+<tr class="odd">
+<td align="right">31</td>
+<td align="left">Ищи гьелълъич1уру гьеъа целуйцел ххиралъута рук1а.</td>
+<td align="left">Мы с каждым днем привыкли друг к другу и не хотелись расставаться.</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="left">Цер зиуди ден туканна хъучибалъихи вел1а вук1а.</td>
+<td align="left">В один день я собирался в магазин купить учебники.</td>
+</tr>
+<tr class="odd">
+<td align="right">33</td>
+<td align="left">Туканна кьет1ирмахи чи-талу рак1варала мугъу ишала т1аму бета.</td>
+<td align="left">Подумав, как пойти в магазин с ягнёнком, решил оставить его закрыв в комнате.</td>
+</tr>
+<tr class="even">
+<td align="right">34</td>
+<td align="left">Бит1ив ден къват1а вац1аб заманади, бехут1у чунгьа гьибгъва.</td>
+<td align="left">Как вышел на улицу, ягнёнок гоняется за мной.</td>
+</tr>
+<tr class="odd">
+<td align="right">35</td>
+<td align="left">Туканнала вац1а, ишхъа гъилъа ригьуй, инукулахи гьуб орсса гьибгъва-талу хъиду дени.</td>
+<td align="left">Как пришел с магазина, интересовался как он смог вылезть.</td>
+</tr>
+<tr class="even">
+<td align="right">36</td>
+<td align="left">Устурала эту, гьингурла махъо, гьингурахику орсса гьибгъва миса.</td>
+<td align="left">Поднялся на стол, разбил стекло и вышел с окна.</td>
+</tr>
+<tr class="odd">
+<td align="right">37</td>
+<td align="left">Ила йинса ххунххулла бигъо, гьингур махъо-талу гьур зиуди илуди гьуб бела бит1ата бук1а.</td>
+<td align="left">Мамы […], что разбил окно, и целый день говорит что отправляет его на пастбище.</td>
+</tr>
+<tr class="even">
+<td align="right">38</td>
+<td align="left">Ишкур бит1ай бештич1а.</td>
+<td align="left">Я был против.</td>
+</tr>
+<tr class="odd">
+<td align="right">39</td>
+<td align="left">Ила дихъи сурабу йехъвата йагьу, ч1арг1алъата минла дуб кьет1ирла-талу.</td>
+<td align="left">Мама поругала меня, мол, надоел ты со своим ягнёнком.</td>
+</tr>
+<tr class="even">
+<td align="right">40</td>
+<td align="left">Бешеналълъула гьину – гьину берахху мисихаб бук1елълъи, гьингурла махъелълъи, илуди къот1и игьу гьуб бела бит1ай-талу.</td>
+<td align="left">Находился иногда на постели, разбил окно; мать решила его отправить на пастбище.</td>
+</tr>
+<tr class="odd">
+<td align="right">41</td>
+<td align="left">Цеб зиуди илуди дени гьедибалъич1у вехут1у вит1о, кьет1ир санду чи бештич1а еб игьула.</td>
+<td align="left">В один день, мать отправила меня за телятами, и никак не разрешила мне взять с собой ягнёнка.</td>
+</tr>
+<tr class="even">
+<td align="right">42</td>
+<td align="left">Ишхъа гьедибалъила ибча ден гъилъа ригьуй, кьет1ир дий бехъут1у миса, илулъила дибла боч1уха питна бул1у.</td>
+<td align="left">Возвращаясь домой, моего ягнёнка […] резать, и у нас с мамой случился скандал.</td>
+</tr>
+<tr class="odd">
+<td align="right">43</td>
+<td align="left">Орссала ванъа, ден к1еда зиуди ишхъа гъич1а, гъунду вагьи щайт1ана ванъихо вук1а.</td>
+<td align="left">Я вышел из дома и не возвращался домой два дня, спал в саду местности “Щайт1ане”.</td>
+</tr>
+<tr class="even">
+<td align="right">44</td>
+<td align="left">Илуди ден вакъайгъалу базареку цебла кьет1ир ибху, амма гьуб кьет1ир дий расдала идихаб бук1ич1а.</td>
+<td align="left">Мама купила мне другого ягнёнка чтобы меня примирить, но я его никак не любил.</td>
+</tr>
+<tr class="odd">
+<td align="right">45</td>
+<td align="left">Гьуб кьет1ирач1у дени векьарада къиндихо вук1ич1а.</td>
+<td align="left">[…]</td>
+</tr>
+<tr class="even">
+<td align="right">46</td>
+<td align="left">Дибда кьет1иралъи рикьи хеъала хич1а.</td>
+<td align="left">Даже не провобовал мясо от своего ягнёнка.</td>
+</tr>
+<tr class="odd">
+<td align="right">47</td>
+<td align="left">Гьула бул1у дибла зук1к1у кьет1иралъила гьудуллъи.</td>
+<td align="left">Так завершился моя дружба с маленьким ягнёнком.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
