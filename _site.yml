@@ -10,3 +10,6 @@ navbar:
       menu:
         - text: "Регьинлъи талих1 (Семейное счастье)"
           href: text1.html
+        - text: "Денла диб кьет1ирла (Я и мой ягненок)"
+          href: lamb.html
+
