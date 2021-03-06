@@ -12,4 +12,7 @@ navbar:
           href: text1.html
         - text: "Денла диб кьет1ирла (Я и мой ягненок)"
           href: lamb.html
+        - text: "Керпеч инлала игье (Как сделать кирпич)"
+          href: brick.html
+
 

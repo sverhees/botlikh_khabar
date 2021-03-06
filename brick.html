@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>brick.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">буйхалъи ххабарде</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Домашняя страница</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Рассказы
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="text1.html">Регьинлъи талих1 (Семейное счастье)</a>
+    </li>
+    <li>
+      <a href="lamb.html">Денла диб кьет1ирла (Я и мой ягненок)</a>
+    </li>
+    <li>
+      <a href="brick.html">Керпеч инлала игье (Как сделать кирпич)</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><br></p>
+<div id="керпеч-инлала-игье-как-сделать-кирпич" class="section level1 tabset">
+<h1>Керпеч инлала игье (Как сделать кирпич)</h1>
+<div style="max-width:650px;text-align:center">
+
+<p>Эта история была записана Т.Е. Гудавой (1922–1976) во время полевой работы (в 50-х–60-х годах), неизвестно у кого. Гудава записал истории на ботлихском языке грузинской орфографией, и в большинстве слуаев не записал перевод. За последние годы С. Ферхеес набрала тексты на кириллице, и частично их разобрала с помощью К. Наккарато и разных носителей ботлихского языка. Работа пока далеко не завершена, и осталось много вопросов и неточностей. Мы стараемся постоянно дополнять и улучшать.</p>
+<div id="ботлихский" class="section level2">
+<h2>ботлихский</h2>
+<p>Керпеч букъи буккала, гьеч1и ссеъа унщи хварде, ехха бехут1у лълъенила т1инду биччи бигъай амал игье. Биччи бигъаата-к1о ригьуди бакьа никкула бигье. Эхха гьеъала рул1у биччи ц1ек1абалъиди мерхьу бул1а-риуди т1оргуда биччи данда игье. Керпеч букъихо адамиди кепла ибху керпеч букъе. Керпеч букъихо адамий кумак игье цевла гьек1ващуди. Гьув гьек1ващуди биччи бекьара барл1е. Керпеч букъихо адамиди кепилъи гьину биччила бук1о реъабалъиди биччи т1ибдай амал игье. Эхха кепла гьирц1о гъижихи бук1ай амале. К1ейхоб букхата-к1о ригьуди чинкурла ибху кеп гьинуку аржай букке. Гьула букъе эргади керпеч. Букъу булъариуди керпеч букъуй бете, эхха уда — ара ссардай амал игье бекъа бекъу1-талу.</p>
+</div>
+<div id="русский" class="section level2">
+<h2>русский</h2>
+<p>Чтобы резать кирпич в первую очередь копают землю, потом наливают воду и делается глина. Когда мешают глину, тогда смешивают/ссыпают солому. Потом ногами топчут эту глину. После окончания всю глину собирают в одном месте. Человек, который режет кирпич, имеет с собой форму и режет кирпич. Человеку, который режет кирпич, помогает еще один человек. Этот другой человек подносит глину поближе. Человек, который режет кирпич, кладет в форму глину, затем руками давит эту глину. Потом берет эту форму, поднимает на плечи. Когда режет второй кирпич, берет тряпку и смачивает форму изнутри. Вот так режут по очереди кирпичи. После резки кирпичи оставляют сохнуть, потом поворачивают то на один бок, то на другой для сушки.</p>
+</div>
+<div id="ботлихский-и-русский" class="section level2">
+<h2>ботлихский и русский</h2>
+<table>
+<colgroup>
+<col width="1%" />
+<col width="50%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="left">буйхалъи</th>
+<th align="left">русский</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Керпеч букъи буккала, гьеч1и ссеъа унщи хварде, ехха бехут1у лълъенила т1инду биччи бигъай амал игье.</td>
+<td align="left">Чтобы резать кирпич в первую очередь копают землю, потом наливают воду и делается глина.</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Биччи бигъаата-к1о ригьуди бакьа никкула бигье.</td>
+<td align="left">Когда мешают глину, тогда смешивают/ссыпают солому.</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Эхха гьеъала рул1у биччи ц1ек1абалъиди мерхьу бул1а-риуди т1оргуда биччи данда игье.</td>
+<td align="left">Потом ногами топчут эту глину. После окончания всю глину собирают в одном месте.</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Керпеч букъихо адамиди кепла ибху керпеч букъе.</td>
+<td align="left">Человек, который режет кирпич, имеет с собой форму и режет кирпич.</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Керпеч букъихо адамий кумак игье цевла гьек1ващуди.</td>
+<td align="left">Человеку, который режет кирпич, помогает еще один человек.</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Гьув гьек1ващуди биччи бекьара барл1е.</td>
+<td align="left">Этот другой человек подносит глину поближе.</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">Керпеч букъихо адамиди кепилъи гьину биччила бук1о реъабалъиди биччи т1ибдай амал игье.</td>
+<td align="left">Человек, который режет кирпич, кладет в форму глину, затем руками давит эту глину.</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">Эхха кепла гьирц1о гъижихи бук1ай амале.</td>
+<td align="left">Потом берет эту форму, поднимает на плечи.</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">К1ейхоб букхата-к1о ригьуди чинкурла ибху кеп гьинуку аржай букке.</td>
+<td align="left">Когда режет второй кирпич, берет тряпку и смачивает форму изнутри.</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">Гьула букъе эргади керпеч.</td>
+<td align="left">Вот так режут по очереди кирпичи.</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">Букъу булъариуди керпеч букъуй бете, эхха уда — ара ссардай амал игье бекъа бекъу1-талу.</td>
+<td align="left">После резки кирпичи оставляют сохнуть, потом поворачивают то на один бок, то на другой для сушки.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
