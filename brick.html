@@ -11,14 +11,24 @@
 
 
 
-<title>brick.utf8</title>
+<title>brick.knit</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -30,14 +40,9 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      </style>
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -50,32 +55,8 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 
 
@@ -85,10 +66,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -105,40 +82,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -166,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -178,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -188,11 +141,28 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.parent().addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -204,13 +174,12 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -218,16 +187,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -271,7 +233,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -281,23 +243,26 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Домашняя страница</a>
+  <a href="index.html">ишхъе</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Рассказы
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    ххабарде
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="text1.html">Регьинлъи талих1 (Семейное счастье)</a>
+      <a href="text1.html">Регьинлъи талих1</a>
     </li>
     <li>
-      <a href="lamb.html">Денла диб кьет1ирла (Я и мой ягненок)</a>
+      <a href="text2.html">Ханилъила гьабуда вашащуб хIахъалдала муха</a>
     </li>
     <li>
-      <a href="brick.html">Керпеч инлала игье (Как сделать кирпич)</a>
+      <a href="lamb.html">Денла диб кьет1ирла</a>
+    </li>
+    <li>
+      <a href="brick.html">Керпеч инлала игье</a>
     </li>
   </ul>
 </li>
@@ -309,7 +274,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -318,21 +283,170 @@ $(document).ready(function () {
 
 
 <p><br></p>
-<div id="керпеч-инлала-игье-как-сделать-кирпич" class="section level1 tabset">
-<h1>Керпеч инлала игье (Как сделать кирпич)</h1>
-<div style="max-width:650px;text-align:center">
+<div id="керпеч-инлала-игье" class="section level1 tabset">
+<h1 class="tabset">Керпеч инлала игье</h1>
+<div style="max-width:650px;text-align:left">
 
-<p>Эта история была записана Т.Е. Гудавой (1922–1976) во время полевой работы (в 50-х–60-х годах), неизвестно у кого. Гудава записал истории на ботлихском языке грузинской орфографией, и в большинстве слуаев не записал перевод. За последние годы С. Ферхеес набрала тексты на кириллице, и частично их разобрала с помощью К. Наккарато и разных носителей ботлихского языка. Работа пока далеко не завершена, и осталось много вопросов и неточностей. Мы стараемся постоянно дополнять и улучшать.</p>
-<div id="ботлихский" class="section level2">
-<h2>ботлихский</h2>
-<p>Керпеч букъи буккала, гьечIи ссеъа унщи хварде, ехха бехутIу лълъенила тIинду биччи бигъай амал игье. Биччи бигъаата-кIо ригьуди бакьа никкула бигье. Эхха гьеъала рулIу биччи цIекIабалъиди мерхьу булIа-риуди тIоргуда биччи данда игье. Керпеч букъихо адамиди кепла ибху керпеч букъе. Керпеч букъихо адамий кумак игье цевла гьекIващуди. Гьув гьекIващуди биччи бекьара барлIе. Керпеч букъихо адамиди кепилъи гьину биччила букIо реъабалъиди биччи тIибдай амал игье. Эхха кепла гьирцIо гъижихи букIай амале. КIейхоб букхата-кIо ригьуди чинкурла ибху кеп гьинуку аржай букке. Гьула букъе эргади керпеч. Букъу булъариуди керпеч букъуй бете, эхха уда — ара ссардай амал игье бекъа бекъуI-талу.</p>
+<p>Этот текст был записан Т.Е. Гудавой (1922–1976) во время полевой
+работы (в 50-х–60-х годах), неизвестно у кого. Гудава записал истории на
+ботлихском языке грузинской орфографией, и в большинстве слуаев не
+записал перевод. Тексты были набраны на кириллице С. Ферхеес, и
+(частично) переведены и разобраны с помощью К. Наккарато, С. Задыкян и
+разных носителей ботлихского языка.</p>
+<p>Возможно вы заметили ошибки и другие неточности и странности в
+тексте. Это могло быть результатом опечатки при наборе кириллицей,
+исконный исследователь мог ослышаться или опечататься, да и тот, кто ему
+рассказывал историю мог ошибаться, или сказать по-старому, как сейчас
+уже никто не говорит. Возможных причин много.</p>
+<p>Если вы хотите предлагать исправление, пройдите по <a
+href="https://forms.gle/EryJEpjoy9wqtCwq8">ссылке</a>. Мы стараемся
+постоянно дополнять и улучшать.</p>
+<div id="буйхалъи" class="section level2">
+<h2>буйхалъи</h2>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="97%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="left">буйхалъи</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Керпеч инлала игье</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Керпеч букъи буккала, гьечIи ссеъа унщи хварде, ехха
+бехутIу лълъенила тIинду биччи бигъай амал игье.</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Биччи бигъаата-кIо ригьуди бакьа никкула бигье.</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Эхха гьеъала рулIу биччи цIекIабалъиди мерхьу
+булIа-риуди тIоргуда биччи данда игье.</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Керпеч букъихо адамиди кепла ибху керпеч букъе.</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Керпеч букъихо адамий кумак игье цевла
+гьекIващуди.</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">Гьув гьекIващуди биччи бекьара барлIе.</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">Керпеч букъихо адамиди кепилъи гьину биччила букIо
+реъабалъиди биччи тIибдай амал игье.</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">Эхха кепла гьирцIо гъижихи букIай амале.</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">КIейхоб букхата-кIо ригьуди чинкурла ибху кеп гьинуку
+аржай букке.</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">Гьула букъе эргади керпеч.</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">Букъу булъариуди керпеч букъуй бете, эхха уда — ара
+ссардай амал игье бекъа бекъуI-талу.</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="русский" class="section level2">
-<h2>русский</h2>
-<p>Чтобы резать кирпич в первую очередь копают землю, потом наливают воду и делается глина. Когда мешают глину, тогда смешивают/ссыпают солому. Потом ногами топчут эту глину. После окончания всю глину собирают в одном месте. Человек, который режет кирпич, имеет с собой форму и режет кирпич. Человеку, который режет кирпич, помогает еще один человек. Этот другой человек подносит глину поближе. Человек, который режет кирпич, кладет в форму глину, затем руками давит эту глину. Потом берет эту форму, поднимает на плечи. Когда режет второй кирпич, берет тряпку и смачивает форму изнутри. Вот так режут по очереди кирпичи. После резки кирпичи оставляют сохнуть, потом поворачивают то на один бок, то на другой для сушки.</p>
+<div id="гiурус-мицiцiилъи" class="section level2">
+<h2>гIурус мицIцIилъи</h2>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="97%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="left">гIурус мицIцIилъи</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Как сделать кирпич</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Чтобы резать кирпич в первую очередь копают землю,
+потом наливают воду и делается глина.</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Когда мешают глину, тогда смешивают/ссыпают
+солому.</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Потом ногами топчут эту глину. После окончания всю
+глину собирают в одном месте.</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Человек, который режет кирпич, имеет с собой форму и
+режет кирпич.</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Человеку, который режет кирпич, помогает еще один
+человек.</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">Этот другой человек подносит глину поближе.</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">Человек, который режет кирпич, кладет в форму глину,
+затем руками давит эту глину.</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">Потом берет эту форму, поднимает на плечи.</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">Когда режет второй кирпич, берет тряпку и смачивает
+форму изнутри.</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="left">Вот так режут по очереди кирпичи.</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">После резки кирпичи оставляют сохнуть, потом
+поворачивают то на один бок, то на другой для сушки.</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="ботлихский-и-русский" class="section level2">
-<h2>ботлихский и русский</h2>
+<div id="буйхалъила-гiурус-мицiцiилъила" class="section level2">
+<h2>буйхалъила гIурус мицIцIилъила</h2>
 <table>
 <colgroup>
 <col width="1%" />
@@ -343,64 +457,83 @@ $(document).ready(function () {
 <tr class="header">
 <th align="right"></th>
 <th align="left">буйхалъи</th>
-<th align="left">русский</th>
+<th align="left">гIурус мицIцIилъи</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">Керпеч букъи буккала, гьечIи ссеъа унщи хварде, ехха бехутIу лълъенила тIинду биччи бигъай амал игье.</td>
-<td align="left">Чтобы резать кирпич в первую очередь копают землю, потом наливают воду и делается глина.</td>
+<td align="left">Керпеч инлала игье</td>
+<td align="left">Как сделать кирпич</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">Биччи бигъаата-кIо ригьуди бакьа никкула бигье.</td>
-<td align="left">Когда мешают глину, тогда смешивают/ссыпают солому.</td>
+<td align="left">Керпеч букъи буккала, гьечIи ссеъа унщи хварде, ехха
+бехутIу лълъенила тIинду биччи бигъай амал игье.</td>
+<td align="left">Чтобы резать кирпич в первую очередь копают землю,
+потом наливают воду и делается глина.</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">Эхха гьеъала рулIу биччи цIекIабалъиди мерхьу булIа-риуди тIоргуда биччи данда игье.</td>
-<td align="left">Потом ногами топчут эту глину. После окончания всю глину собирают в одном месте.</td>
+<td align="left">Биччи бигъаата-кIо ригьуди бакьа никкула бигье.</td>
+<td align="left">Когда мешают глину, тогда смешивают/ссыпают
+солому.</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="left">Керпеч букъихо адамиди кепла ибху керпеч букъе.</td>
-<td align="left">Человек, который режет кирпич, имеет с собой форму и режет кирпич.</td>
+<td align="left">Эхха гьеъала рулIу биччи цIекIабалъиди мерхьу
+булIа-риуди тIоргуда биччи данда игье.</td>
+<td align="left">Потом ногами топчут эту глину. После окончания всю
+глину собирают в одном месте.</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">Керпеч букъихо адамий кумак игье цевла гьекIващуди.</td>
-<td align="left">Человеку, который режет кирпич, помогает еще один человек.</td>
+<td align="left">Керпеч букъихо адамиди кепла ибху керпеч букъе.</td>
+<td align="left">Человек, который режет кирпич, имеет с собой форму и
+режет кирпич.</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="left">Гьув гьекIващуди биччи бекьара барлIе.</td>
-<td align="left">Этот другой человек подносит глину поближе.</td>
+<td align="left">Керпеч букъихо адамий кумак игье цевла
+гьекIващуди.</td>
+<td align="left">Человеку, который режет кирпич, помогает еще один
+человек.</td>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
-<td align="left">Керпеч букъихо адамиди кепилъи гьину биччила букIо реъабалъиди биччи тIибдай амал игье.</td>
-<td align="left">Человек, который режет кирпич, кладет в форму глину, затем руками давит эту глину.</td>
+<td align="left">Гьув гьекIващуди биччи бекьара барлIе.</td>
+<td align="left">Этот другой человек подносит глину поближе.</td>
 </tr>
 <tr class="even">
 <td align="right">8</td>
-<td align="left">Эхха кепла гьирцIо гъижихи букIай амале.</td>
-<td align="left">Потом берет эту форму, поднимает на плечи.</td>
+<td align="left">Керпеч букъихо адамиди кепилъи гьину биччила букIо
+реъабалъиди биччи тIибдай амал игье.</td>
+<td align="left">Человек, который режет кирпич, кладет в форму глину,
+затем руками давит эту глину.</td>
 </tr>
 <tr class="odd">
 <td align="right">9</td>
-<td align="left">КIейхоб букхата-кIо ригьуди чинкурла ибху кеп гьинуку аржай букке.</td>
-<td align="left">Когда режет второй кирпич, берет тряпку и смачивает форму изнутри.</td>
+<td align="left">Эхха кепла гьирцIо гъижихи букIай амале.</td>
+<td align="left">Потом берет эту форму, поднимает на плечи.</td>
 </tr>
 <tr class="even">
 <td align="right">10</td>
-<td align="left">Гьула букъе эргади керпеч.</td>
-<td align="left">Вот так режут по очереди кирпичи.</td>
+<td align="left">КIейхоб букхата-кIо ригьуди чинкурла ибху кеп гьинуку
+аржай букке.</td>
+<td align="left">Когда режет второй кирпич, берет тряпку и смачивает
+форму изнутри.</td>
 </tr>
 <tr class="odd">
 <td align="right">11</td>
-<td align="left">Букъу булъариуди керпеч букъуй бете, эхха уда — ара ссардай амал игье бекъа бекъуI-талу.</td>
-<td align="left">После резки кирпичи оставляют сохнуть, потом поворачивают то на один бок, то на другой для сушки.</td>
+<td align="left">Гьула букъе эргади керпеч.</td>
+<td align="left">Вот так режут по очереди кирпичи.</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="left">Букъу булъариуди керпеч букъуй бете, эхха уда — ара
+ссардай амал игье бекъа бекъуI-талу.</td>
+<td align="left">После резки кирпичи оставляют сохнуть, потом
+поворачивают то на один бок, то на другой для сушки.</td>
 </tr>
 </tbody>
 </table>
@@ -417,7 +550,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -435,7 +568,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
